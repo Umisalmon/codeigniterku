@@ -64,19 +64,44 @@
          foreach($daftar_orang as $baris) { 
              ?>
               <tr>
-      <th scope="row">1</th>
-      <td><?php echo $baris->nama ?></td>
-      <td><?php echo $baris->alamat ?></td>
-      <td>
-        <button class="btn btn-secondary" type="submit">ubah</button>
-        <button class="btn btn-dark" type="submit">Hapus</button>
-      </td>
-    </tr>
-             <?php
-         }
-    ?>
-  </tbody>
+                 <th scope="row"><?php echo $baris->id ?></th>
+                 <td><?php echo $baris->nama ?></td>
+                 <td><?php echo $baris->alamat ?></td>
+                 <td>
+                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ubahModal<?php echo $baris->id ?>">ubah</button>
+                    <a class="btn btn-dark" href="Welcome/hapusOrang/<?php echo $baris->id ?>">Hapus</a>
+                 </td>
+               </tr>
+
+               <div class="modal fade" id="ubahModal<?php echo $baris->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+           <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Orang</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+            <form action="index.php/welcome/ubahOrang" method="post">
+             <div class="modal-body">
+                <input type="hidden" name="id" value="<?php echo $baris->id ?>">
+                <input type="text" name="nama" class="form-control" value="<?php echo $baris->id ?>">
+                <br>
+                <input type="text" name="alamat" class="form-control" value="<?php echo $baris->id ?>">
+             </div>
+             <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+         </div>
+            </form>
+      </div>
+    </div>
+  </div>
+              <?php
+            }
+        ?>
+    </tbody>
 </table>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
